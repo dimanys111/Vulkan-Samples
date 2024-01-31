@@ -1,5 +1,6 @@
 #include <core/platform/entrypoint.hpp>
 
+#include "hello_triangle.h"
 #include "hpp_texture_loading.h"
 #include "platform/unix/unix_platform.h"
 #include "platform/glfw_window.h"
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
     auto context = create_platform_context(argc, argv);
     vkb::UnixPlatform platform{*context, vkb::UnixType::Linux};
     auto window = std::make_unique<vkb::GlfwWindow>(&platform, vkb::Window::Properties());
-    std::unique_ptr<vkb::Application> active_app = std::make_unique<HPPTextureLoading>();
+    std::unique_ptr<vkb::Application> active_app = std::make_unique<HelloTriangle>();
     active_app->prepare({false, window.get()});
 
     vkb::Timer timer;
