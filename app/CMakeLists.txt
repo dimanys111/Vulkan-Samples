@@ -12,4 +12,4 @@ source_group("\\" FILES ${SRC})
 
 add_executable(${PROJECT_NAME} WIN32 ${SRC})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE vkb__core apps plugins hpp_hello_triangle)
+target_link_libraries(${PROJECT_NAME} PRIVATE vkb__core apps plugins)
