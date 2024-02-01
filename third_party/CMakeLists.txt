@@ -203,6 +203,7 @@ set_property(TARGET volk PROPERTY FOLDER "ThirdParty")
 
 # imgui
 set(IMGUI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/imgui")
+set(IMGUI_BAC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/imgui/backends")
 set(IMGUI_FILES
     "${IMGUI_DIR}/imgui.cpp"
     "${IMGUI_DIR}/imgui_demo.cpp"
@@ -213,11 +214,19 @@ set(IMGUI_FILES
     "${IMGUI_DIR}/imgui_internal.h"
     "${IMGUI_DIR}/imstb_rectpack.h"
     "${IMGUI_DIR}/imstb_textedit.h"
-    "${IMGUI_DIR}/imstb_truetype.h")
+    "${IMGUI_DIR}/imstb_truetype.h"
+    "${IMGUI_DIR}/imgui_tables.cpp"
+    "${IMGUI_BAC_DIR}/imgui_impl_glfw.cpp"
+    "${IMGUI_BAC_DIR}/imgui_impl_glfw.h"
+    "${IMGUI_BAC_DIR}/imgui_impl_vulkan.cpp"
+    "${IMGUI_BAC_DIR}/imgui_impl_vulkan.h"
+)
 
 add_library(imgui STATIC ${IMGUI_FILES})
 
-target_include_directories(imgui PUBLIC ${IMGUI_DIR})
+target_include_directories(imgui PUBLIC ${IMGUI_DIR} ${IMGUI_BAC_DIR})
+
+target_link_libraries(imgui PRIVATE glfw)
 
 set_target_properties(imgui PROPERTIES FOLDER "ThirdParty" POSITION_INDEPENDENT_CODE ON)
 
